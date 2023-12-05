@@ -523,7 +523,8 @@ handleCitation citation = do
                          <> x <> " ")
                      (Citeproc.citationItemLocator item)
                     <> fromMaybe mempty (Citeproc.citationItemSuffix item)
-                , citationMode = NormalCitation -- TODO for now
+                , citationMode = maybe NormalCitation (const SuppressAuthor) (Citeproc.citationItemType item)
+                --, citationMode = NormalCitation -- TODO for now
                 , citationNoteNum = 0
                 , citationHash = 0 }
   let items = Citeproc.citationItems citation
