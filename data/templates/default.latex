@@ -24,6 +24,9 @@ $if(aspectratio)$
   aspectratio=$aspectratio$,
 $endif$
 $endif$
+$if(twocolumn)$
+  twocolumn,
+$endif$
 $for(classoption)$
   $classoption$$sep$,
 $endfor$
@@ -255,6 +258,9 @@ $if(multirow)$
 \usepackage{multirow}
 $endif$
 \usepackage{calc} % for calculating minipage widths
+$if(twocolumn)$
+\RenewEnvironmentCopy{table}{table*}
+$endif$
 $if(beamer)$
 \usepackage{caption}
 % Make caption package work with longtable
@@ -286,6 +292,9 @@ $if(graphics)$
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
+$if(twocolumn)$
+\RenewEnvironmentCopy{figure}{figure*}
+$endif$
 $endif$
 $if(svg)$
 \usepackage{svg}
